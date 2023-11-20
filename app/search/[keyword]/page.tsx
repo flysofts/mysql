@@ -1,0 +1,31 @@
+import db from '@/db';
+import { RowDataPacket } from 'mysql2';
+import React from 'react';
+import Link from "next/link";
+
+export default async function SearchResult({
+    params
+} : {
+    params?: {keyword?: string}
+}){
+    const keywords = params?. keyword !== undefined ? params.keyword : "";
+    const [results] = await db.query<RowDataPacket[]>('select * from parkjihawn.board where title Like ?', [`%${decodeURIComponent(keywords)}%`])
+    console.log(results)
+    return(
+        <div>
+            <p>검색 결과: {decodeURIComponent(keywords)}</p>
+            {results.length === 0 && <p>없어</p>}
+            {results && results.length > 0 && results.map((e,i)=>{
+                return(
+                    <div key={i}>
+                        <Link href={`/post/${e.id}`}>
+                        <p>{e.title}</p>
+                        </Link>
+                        <p>{e.content}</p>
+                        <p>{e.userid}</p>
+                    </div>
+                )
+            })}
+        </div>
+    )
+}

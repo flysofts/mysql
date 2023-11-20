@@ -15,7 +15,6 @@ export default function Write(){
   const [formData, setFormData] = useState<formType>({
     userid: session?.user?.email ??'',
     username : session?.user?.name ??'',
-
     title: '',
     content: ''
   })

@@ -1,8 +1,7 @@
 'use client';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import React, {useEffect, useState} from 'react'
-import Router from 'next/router';
+
 interface PostList {
   id : number;
   title : string;
@@ -14,7 +13,7 @@ interface PostList {
 export default function Post(){
   const [posts, setPosts] = useState<PostList[]>([]);
   const [totalCnt, setTotalCnt] = useState<number>(0);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState<number>(1);
 
 
   // const router = useRouter()

@@ -1,4 +1,4 @@
-// not-found.tsx
+
 import { headers } from 'next/headers'
 export default async function NotFound(){
   const headerList = headers();

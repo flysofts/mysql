@@ -105,6 +105,7 @@ export default function Comment(props: CommentProps) {
           <p className="font-bold text-center py-10 text-xl max-w-3xl bg-sky-200 m-auto b">- 댓글 목록 -</p>
           {
             totalComment && totalComment.map((e, i) => {
+              
               const date = new Date(e.date);
               // date.setTime(date.getTime()+(60*60*9*1000))
               const year = date.getFullYear();
@@ -120,7 +121,7 @@ export default function Comment(props: CommentProps) {
             })
           }
           <div className="text-center py-16  max-w-3xl bg-sky-200 m-auto">
-          <input name="content" type="text" onChange={commentValue} className="border  border-gray-500 rounded " />
+          <input name="content" type="text" onChange={commentValue} className="border  border-gray-500 rounded "/>
           <button onClick={cmtSubmit} className="font-bold pl-5 hover:text-gray-500">댓글 달기</button>
           </div>
         </>

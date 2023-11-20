@@ -40,7 +40,7 @@ export default function Detail() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ id: e })
+        body: JSON.stringify({ id: e})
       })
       if (res.ok) {
         const data = await res.json();
