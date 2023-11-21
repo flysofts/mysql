@@ -12,7 +12,7 @@ interface userInfo{
         name:string;
         email:any;
         password: string;
-        level: number
+        level: number;
     }
 }
 

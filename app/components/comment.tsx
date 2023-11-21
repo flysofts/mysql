@@ -50,51 +50,45 @@ export default function Comment(props: CommentProps) {
     username: session?.user?.name ?? '',
     content: ''
   })
-  useEffect(()=>{
-    setFormData({
-      parentid: id,
-    userid: session?.user?.email ?? '',
-    username: session?.user?.name ?? '',
-    content: ''
-    })
-  })
   const [totalComment, setTotalComment] = useState<CommentType[]>();
 
-  const commentValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const commentValue = (e: React.ChangeEvent<HTMLInputElement>) =>{
     // setComment(e.target.value);
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({...formData, [e.target.name] : e.target.value});
     console.log(formData)
   }
   const params = useParams();
   console.log(params)
-  useEffect(() => {
-    const fetchData = async () => {
+  useEffect(()=>{
+    const fetchData = async ()=>{
       const res = await fetch(`/api/comment?id=${params.id}`)
       const data = await res.json();
       setTotalComment(data.result);
     }
     fetchData()
-  }, [params.id])
+  },[params.id])
 
-  const cmtSubmit = async () => {
+  const cmtSubmit = async ()=>{
+    
+    try{
 
-    try {
-
-      const res = await fetch('/api/comment', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
+      const res = await fetch ('/api/comment', {
+        method : 'POST',
+        headers : {
+          'Content-Type' : 'application/json'
         },
         body: JSON.stringify(formData)
       })
-      if (res.ok) {
+      if(res.ok){
         const data = await res.json();
-        console.log(data)
+        console.log(data);
         setTotalComment(data.result)
       }
-    } catch (error) {
+
+    }catch(error){
       console.log(error);
     }
+
   }
 
 
@@ -116,7 +110,11 @@ export default function Comment(props: CommentProps) {
               const seconds = date.getSeconds().toString().padStart(2, '0')
               const formatDate = `${year}-${month}-${day} ${day} ${hours}:${minutes}:${seconds}`
               return (
-                <p className="text-center  max-w-3xl bg-sky-200 m-auto">{e.content}</p>
+                <>
+                <p className="text-center  max-w-3xl bg-sky-200 m-auto">이름:{e.username}</p>
+                <p className="text-center  max-w-3xl bg-sky-200 m-auto">내용:{e.content}</p>
+                <p className="text-center  max-w-3xl bg-sky-200 m-auto" key={i}>시간:{formatDate}</p>
+                </>
               )
             })
           }
@@ -127,6 +125,5 @@ export default function Comment(props: CommentProps) {
         </>
       }
     </>
-
   )
 }

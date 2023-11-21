@@ -92,6 +92,7 @@ export const authOptions : any = {
                 name : user.name,
                 email : user.email,
                 level : user.level
+                
               };
             }
             return token

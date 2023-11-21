@@ -22,8 +22,6 @@ interface userInfo {
   
     return (
       <>
-      
-        
         {
            session && session.user 
           ? 
@@ -33,7 +31,7 @@ interface userInfo {
             </>
           :
             <>
-            <Link href="/register">회원가입</Link>
+            <Link className='mr-5' href="/register">회원가입</Link>
             <Login/>
           </>
         }
