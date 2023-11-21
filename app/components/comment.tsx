@@ -96,7 +96,7 @@ export default function Comment(props: CommentProps) {
     <>
       {
         session && session.user && <>
-          <p className="font-bold text-center py-10 text-xl max-w-3xl bg-sky-200 m-auto b">- 댓글 목록 -</p>
+          <p className="font-bold text-center py-10 text-xl max-w-full bg-gray-300 m-auto b">- 댓글 목록 -</p>
           {
             totalComment && totalComment.map((e, i) => {
               
@@ -105,20 +105,30 @@ export default function Comment(props: CommentProps) {
               const year = date.getFullYear();
               const month = (date.getMonth() + 1).toString().padStart(2, '0');
               const day = date.getDate().toString().padStart(2, '0');
-              const hours = (date.getHours()*9).toString().padStart(2, '0')
+              const hours = (date.getHours()).toString().padStart(2, '0')
               const minutes = date.getMinutes().toString().padStart(2, '0')
               const seconds = date.getSeconds().toString().padStart(2, '0')
               const formatDate = `${year}-${month}-${day} ${day} ${hours}:${minutes}:${seconds}`
               return (
+                
                 <>
-                <p className="text-center  max-w-3xl bg-sky-200 m-auto">이름:{e.username}</p>
-                <p className="text-center  max-w-3xl bg-sky-200 m-auto">내용:{e.content}</p>
-                <p className="text-center  max-w-3xl bg-sky-200 m-auto" key={i}>시간:{formatDate}</p>
+                <div className="bg-gray-300 w-full">
+                <p className="text-center pr-36 mb-2">이름:  
+                  <span className="pl-2">{e.username}</span>
+                </p>
+                <p className="text-center pr-32 mb-2">내용:
+                <span  className="pl-2">{e.content}</span>
+                </p>
+                <p className="text-center pb-2" key={i}>시간:
+                <span  className="pl-2">{formatDate}</span>
+                </p>
+                </div>
+
                 </>
               )
             })
           }
-          <div className="text-center py-16  max-w-3xl bg-sky-200 m-auto">
+          <div className="text-center py-16 w-full bg-gray-300 m-auto">
           <input name="content" type="text" onChange={commentValue} className="border  border-gray-500 rounded "/>
           <button onClick={cmtSubmit} className="font-bold pl-5 hover:text-gray-500">댓글 달기</button>
           </div>

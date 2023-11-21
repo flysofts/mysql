@@ -78,7 +78,7 @@ export default async function Detail({
       {
         results.length > 0 && (
           <>
-          <div className="flex justify-center mt-40 gap-10 py-5 max-w-3xl bg-sky-300 m-auto">
+          <div className="flex justify-center mt-40 gap-10 py-5 w-full bg-gray-300 m-auto">
             <p className="font-bold text-center">제목 : {post?.title}</p>
             <p className="font-bold text-center">내용 : {post?.content}</p>
             <p className="font-bold text-center">조회수 : {post?.count}</p>

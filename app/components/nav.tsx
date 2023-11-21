@@ -26,8 +26,10 @@ interface userInfo {
            session && session.user 
           ? 
             <>
-              <p>{session && session.user?.name}님 반갑습니다.</p>
+            <div className='flex justify-between bg-slate-50'>
+              <p className='ml-5 font-bold mt-5'>{session && session.user?.name}님 반갑습니다.</p>
               <Logout/>
+            </div>
             </>
           :
             <>
