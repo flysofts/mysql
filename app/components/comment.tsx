@@ -12,7 +12,6 @@ const data = {
 const {id} = data > const id = 5 값이 저장된다.
 data.id 로 사용 가능...
 
-
 */
 'use client';
 import { useParams } from "next/navigation"
@@ -123,13 +122,12 @@ export default function Comment(props: CommentProps) {
                 <span  className="pl-2">{formatDate}</span>
                 </p>
                 </div>
-
                 </>
               )
             })
           }
           <div className="text-center py-16 w-full bg-gray-300 m-auto">
-          <input name="content" type="text" onChange={commentValue} className="border  border-gray-500 rounded "/>
+          <input name="content" type="text" onChange={commentValue} className="border border-gray-500 rounded"/>
           <button onClick={cmtSubmit} className="font-bold pl-5 hover:text-gray-500">댓글 달기</button>
           </div>
         </>

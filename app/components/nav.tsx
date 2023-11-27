@@ -33,8 +33,10 @@ interface userInfo {
             </>
           :
             <>
-            <Link className='mr-5' href="/register">회원가입</Link>
+            <div className='flex justify-end gap-5 mr-5 mt-5'>
+            <Link className='font-bold' href="/register">회원가입</Link>
             <Login/>
+            </div>
           </>
         }
         

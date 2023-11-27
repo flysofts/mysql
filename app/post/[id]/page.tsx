@@ -48,7 +48,7 @@ export default async function Detail({
   params ?: {id?: number}
 }){
   const getIp = await Getip();
-  const userIp = getIp.data
+  const userIp = getIp.data.ip
   console.log(getIp+"내아이피")
   const postId = params?.id !== undefined ? params.id : 1;
   const [results] = await db.query<RowDataPacket[]>('select * from parkjihawn.board where id =?', [postId]);

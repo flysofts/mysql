@@ -53,7 +53,6 @@ export default function Loading(){
             </rect>
           </g>
         </svg>
-
       </div>
     </div>
     )

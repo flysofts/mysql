@@ -5,7 +5,7 @@ export default function Login(){
     window.location.href="/login";
   }
   return (
-    <div className="font-bold ml-5">
+    <div className="font-bold">
       <button onClick={redirectTo}>로그인</button>
     </div>
   )

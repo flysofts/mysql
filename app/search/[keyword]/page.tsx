@@ -13,16 +13,16 @@ export default async function SearchResult({
     console.log(results)
     return(
         <div>
-            <p>검색 결과: {decodeURIComponent(keywords)}</p>
-            {results.length === 0 && <p>없어</p>}
+            <p className='font-bold'>입력값: {decodeURIComponent(keywords)}</p>
+            {results.length === 0 && <p>입력하신 검색내용은 없습니다.</p>}
             {results && results.length > 0 && results.map((e,i)=>{
                 return(
                     <div key={i}>
                         <Link href={`/post/${e.id}`}>
-                        <p>{e.title}</p>
+                        <p>제목:{e.title}</p>
                         </Link>
-                        <p>{e.content}</p>
-                        <p>{e.userid}</p>
+                        <p>내용:{e.content}</p>
+                        <p>유저 id:{e.userid}</p>
                     </div>
                 )
             })}

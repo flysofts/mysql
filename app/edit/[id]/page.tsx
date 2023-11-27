@@ -36,7 +36,7 @@ export default function Edit(props: editProps){
     // ('update parkjihawn.board set title= ?, content= ?where id =?',[title, content, id])
     return (
         <>
-        {posts.length > 0 
+        {post.length > 0 
         ? 
          <form method="post" >
          <input type="text" name="name"  className="shadow text-gray-700 text-sm mb-2 border" />
