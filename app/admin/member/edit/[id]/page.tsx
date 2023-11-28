@@ -99,34 +99,34 @@ export default function MemberEdit({ params }: { params: { id: number } }) {
     console.log(formData)
     return (
         <>
-            <div className="widget w-full overflow-hidden mb-5 p-4">회원 수정</div>
+            <div className="widget w-full overflow-hidden mb-5 p-4 font-bold">회원 수정</div>
             <div className="widget w-full overflow-hidden mb-5 p-4">
                 <div className="flex mb-4 items-center">
-                    <label htmlFor="email" className="basis-3/12 text-xs sm:text-sm">이메일 : </label>
-                    <input onChange={changeEvent} defaultValue={userData && userData.email} type="text" name="email" className="border text-sm p-2 rounded-md" />
+                    <label htmlFor="email" className="basis-3/12 text-xs sm:text-sm font-bold">이메일 : </label>
+                    <input onChange={changeEvent} defaultValue={userData && userData.email} type="text" name="email" className="border text-sm p-2 rounded-md"/>
                 </div>
             </div>
             <div className="widget w-full overflow-hidden mb-5 p-4">
                 <div className="flex mb-4 items-center">
-                    <label htmlFor="email" className="basis-3/12 text-xs sm:text-sm">패스워드 : </label>
+                    <label htmlFor="email" className="basis-3/12 text-xs sm:text-sm font-bold">패스워드 : </label>
                     <input onChange={changeEvent} defaultValue={userData && userData.password} type="password" name="password" className="border text-sm p-2 rounded-md" />
                 </div>
             </div>
             <div className="widget w-full overflow-hidden mb-5 p-4">
                 <div className="flex mb-4 items-center">
-                    <label htmlFor="email" className="basis-3/12 text-xs sm:text-sm">이름 : </label>
+                    <label htmlFor="email" className="basis-3/12 text-xs sm:text-sm font-bold">이름 : </label>
                     <input onChange={changeEvent} defaultValue={userData && userData.name} type="text" name="name" className="border text-sm p-2 rounded-md" />
                 </div>
             </div>
             <div className="widget w-full overflow-hidden mb-5 p-4">
                 <div className="flex mb-4 items-center">
-                    <label htmlFor="email" className="basis-3/12 text-xs sm:text-sm">닉네임 : </label>
+                    <label htmlFor="email" className="basis-3/12 text-xs sm:text-sm font-bold">닉네임 : </label>
                     <input onChange={changeEvent} defaultValue={userData && userData.nickname} type="text" name="nickname" className="border text-sm p-2 rounded-md" />
                 </div>
             </div>
             <div className="widget w-full overflow-hidden mb-5 p-4">
                 <div className="flex mb-4 items-center">
-                    <label htmlFor="email" className="basis-3/12 text-xs sm:text-sm">레벨 : </label>
+                    <label htmlFor="email" className="basis-3/12 text-xs sm:text-sm font-bold">레벨 : </label>
                     <select onChange={changeEvent} name="level" value={userData && userData.level} className="border text-sm px-5 py-2 rounded-md">
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -141,7 +141,7 @@ export default function MemberEdit({ params }: { params: { id: number } }) {
             </div>
             <div className="flex justify-end gap-x-5">
                 <Link href="/admin/member" className="bg-red-500 text-white px-4 py-2 rounded shadow-md hover:bg-red-600">취소</Link>
-                <button onClick={sumbitEvent} className="bg-orange-500 text-white px-4 py-2 rounded shadow-md hover:bg-orange-600">수정</button>
+                <button onClick={sumbitEvent} className="bg-sky-500 text-white px-4 py-2 rounded shadow-md hover:bg-sky-600">수정</button>
             </div>
         </>
     )

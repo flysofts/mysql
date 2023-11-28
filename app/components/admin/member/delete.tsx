@@ -5,6 +5,7 @@ interface deleteType{
     id: number;
 }
 
+
 export default function MemberDelete({name, id} : deleteType){
     const DeleteMember = async()=>{
         const msgChk = confirm(name+"님을 삭제 하시겠습니까?\n삭제 이후 어떠한 경우도 복구 할 수 없습니다.");

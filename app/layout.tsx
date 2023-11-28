@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import AuthSession from './session'
 import Nav from './components/nav'
+import Visit from './components/etc/visit'
 // import { authOptions } from './api/auth/[...nextauth]/route'
 // import { getServerSession } from "next-auth"
 
@@ -31,6 +32,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <AuthSession>
+          <Visit/>
         <Nav/>
         {children}
         </AuthSession>

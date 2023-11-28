@@ -36,6 +36,7 @@ export default async function AdminMember() {
     console.log(data)
     return (
         <>
+        <h3 className="text-center mb-5 font-bold text-2xl">게시판</h3>
             <div className="widget w-full overflow-hidden mb-5 p-4">
                 <h3>회원 관리</h3>
             </div>
@@ -65,8 +66,6 @@ export default async function AdminMember() {
                                 <li className="basis-2/12"><Link href={`/admin/member/edit/${e.id}`}>수정</Link>/<MemberDelete name={e.name} id={e.id}/></li>
                             </ul>
                         )
-
-
                     })
                 }
             </div>

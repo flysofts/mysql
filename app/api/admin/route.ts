@@ -7,20 +7,49 @@ interface PostType{
     id? : number;
 }
 
+interface MainType{
+    totalCnt : number;
+    todayCnt : number;
+    writeCnt : number;
+    commentCnt : number;
+    visitCnt : number;
+    visitTotalCnt : number;
+}
 export const POST = async(req:NextRequest) : Promise<NextResponse> =>{
     const {pathUrl, id}: PostType = JSON.parse(await req.text());
 
     if(req.method === 'POST'){
 
-        if(pathUrl === 'member'){
-            const [memberResult] = await db.query<RowDataPacket[]>('select * from parkjihawn.member order by date DESC');
-            return NextResponse.json({message: "성공", data:memberResult})
-        }else if(pathUrl === 'edit'){
-            const [memberResult] = await db.query<RowDataPacket[]>('select * from parkjihawn.member where id = ?', [id])
-            return NextResponse.json({message: "성공", data:memberResult})
-        }else{
-            return NextResponse.json({error: "알 수 없는 에러가 발생하였습니다."})
+        switch(pathUrl){
+            case 'member' :
+                const [memberResult] = await db.query<RowDataPacket[]>('select * from parkjihawn.member order by date DESC');
+                return NextResponse.json({message: "성공", data:memberResult})
+            case 'edit' :
+                const [editResult] = await db.query<RowDataPacket[]>('select * from parkjihawn.member where id = ?', [id])
+            return NextResponse.json({message: "성공", data:editResult})
+            case 'mainCnt' :
+                const [totalCnt] = await db.query<RowDataPacket[]>('select count(*) as cnt from parkjihawn.member');
+                const [todayCnt] = await db.query<RowDataPacket[]>('select count(*) as cnt from parkjihawn.member where date >= now() - interval 1 day');
+                const [writeCnt] = await db.query<RowDataPacket[]>('select count(*) as cnt from parkjihawn.board where date >= now() - interval 1 day');
+                const [commentCnt] = await db.query<RowDataPacket[]>('select count(*) as cnt from parkjihawn.comment where date >= now() - interval 1 day');
+                const [visitCnt] = await db.query<RowDataPacket[]>('select count(*) as cnt from parkjihawn.visits where visit_time >= now() - interval 1 day');
+                const [visitTotalCnt] = await db.query<RowDataPacket[]>('select count(*) as cnt from parkjihawn.visits');
+
+                const totalData: MainType = {
+                    totalCnt : totalCnt[0].cnt ?? 0,
+                    todayCnt : todayCnt[0].cnt ?? 0,
+                    writeCnt : writeCnt[0].cnt ?? 0,
+                    commentCnt : commentCnt[0].cnt ?? 0,
+                    visitCnt : visitCnt[0].cnt ?? 0,
+                    visitTotalCnt : visitTotalCnt[0].cnt ?? 0
+                }
+                return NextResponse.json({message: "성공" , data:totalData})
+            default:
+                return NextResponse.json({error: "알 수 없는 에러가 발생하였습니다."})
         }
+
+
+        
     }else{
         return NextResponse.json({error: "알 수 없는 에러가 발생하였습니다."})
     }
