@@ -49,7 +49,7 @@ export default async function Detail({
 }){
   const getIp = await Getip();
   const userIp = getIp.data.ip
-  console.log(getIp+"내아이피")
+  
   const postId = params?.id !== undefined ? params.id : 1;
   const [results] = await db.query<RowDataPacket[]>('select * from parkjihawn.board where id =?', [postId]);
   const post = results && results[0]
@@ -57,16 +57,14 @@ export default async function Detail({
   const [countResult] = await db.query<RowDataPacket[]>('select count (*) as cnt from parkjihawn.view_log where postid = ? and ip_address =?', [postId, userIp]);
   const totalCnt = countResult[0].cnt;
   console.log(totalCnt+"개")
+  if(results.length > 0){
+
   if(totalCnt === 0){
     await db.query<RowDataPacket[]>('update parkjihawn.board set count = count + 1 where id = ?', [postId])
-
   }
 
-
-  
-
-    await db.query<RowDataPacket[]>('insert into parkjihawn.view_log (postid, ip_address, view_date) select ?, ?, NOW() where not exists (select 1 from parkjihawn.view_log where postid = ? and ip_address = ? and view_date > now() - interval 24 hour)', [postId, userIp, postId, userIp])
-
+    await db.query<RowDataPacket[]>('insert into parkjihawn.view_log (postid, ip_address, view_date) select ?, ?, NOW() where not exists (select 1 from parkjihawn.view_log where postid = ? and ip_address = ? and view_date > now() - interval 24 hour) and ? is not null', [postId, userIp, postId, userIp])
+  }
     // select 1 존재 여부를 확인하기 위해 사용 > 1 이라는 건 상수 값으로 실제 데이터는 중요하지 않으며, 존재 여부를 확인하기 위함
 
     // 내가 원하는 테이블에서 어떠한 조건 즉 and 까지 포함한 3가지 조건이 모두 충족하는 조건을 찾는다.

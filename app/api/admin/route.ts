@@ -44,6 +44,18 @@ export const POST = async(req:NextRequest) : Promise<NextResponse> =>{
                     visitTotalCnt : visitTotalCnt[0].cnt ?? 0
                 }
                 return NextResponse.json({message: "성공" , data:totalData})
+
+                case 'mainNewMember' :
+                    const [todayMember] = await db.query<RowDataPacket[]>('select * from parkjihawn.member where date >= now() -interval 1 day');
+                    return NextResponse.json({message: "성공", data: todayMember})
+                    case 'mainPost' :
+                        const [newPost] = await db.query<RowDataPacket[]>('select * from parkjihawn.board where date >= now() -interval 1 day');
+                        const [newComment] = await db.query<RowDataPacket[]>('select * from parkjihawn.comment where date >= now() -interval 1 day');
+                        const postData = {
+                            newPost : newPost,
+                            newComment : newComment
+                        }
+                    return NextResponse.json({message: "성공", data:postData})
             default:
                 return NextResponse.json({error: "알 수 없는 에러가 발생하였습니다."})
         }
